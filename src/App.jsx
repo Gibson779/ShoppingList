@@ -47,7 +47,7 @@ export default function App() {
 
   return (
     <div style={{ padding: 20 }}>
-      <h1>Shared Shopping List</h1>
+      <h1>Shopping List</h1>
 
       <input
         value={input}
