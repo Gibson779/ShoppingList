@@ -9,8 +9,8 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 
-export default function App() {
-  const { listId } = useParams(); // 👈 dynamic list ID from URL
+export default function App({ listId }) {
+  
   const [items, setItems] = useState([]);
   const [input, setInput] = useState("");
 
@@ -50,9 +50,23 @@ export default function App() {
     await deleteDoc(doc(db, "lists", currentListId, "items", id));
   };
 
+  const shareList = async () => {
+  const url = `${window.location.origin}/list/${currentListId}`;
+
+  try {
+    await navigator.clipboard.writeText(url);
+    alert("Link copied!");
+  } catch {
+    alert("Failed to copy link");
+  }
+};
+
+
   return (
     <div style={{ padding: 20 }}>
+      
       <h1>Shopping List</h1>
+      <button onClick={shareList}>🔗 Share this list</button>
 
       <p>List ID: <b>{currentListId}</b></p>
 
@@ -62,6 +76,7 @@ export default function App() {
         placeholder="Add item"
       />
       <button onClick={addItem}>Add</button>
+      
 
       <ul>
         {items.map((item) => (
