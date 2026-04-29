@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "./firebase";
+import "./App.css";
 import {
   collection,
   addDoc,
@@ -66,19 +67,25 @@ export default function App({ listId }) {
 
 console.log(import.meta.env.VITE_FIREBASE_PROJECT_ID);
   return (
-    <div style={{ padding: 20 }}>
-      
+    <div className="app">
       <h1>Shopping List</h1>
-      <button onClick={shareList}>🔗 Share this list</button>
 
-      <p>List ID: <b>{currentListId}</b></p>
 
+      <button className="share-btn"
+      onClick={shareList}>    
+        🔗 Share this list
+      </button>
+
+      <p className="list-id">List ID: <b>{currentListId}</b></p>
+
+       <div className="input-row">
       <input
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Add item"
       />
       <button onClick={addItem}>Add</button>
+      </div>
       
 
       <ul>
