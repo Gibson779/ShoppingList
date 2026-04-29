@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { db } from "./firebase";
 import {
   collection,
@@ -8,46 +9,52 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 
-const LIST_ID = "shared-list"; // same ID for all users
-
 export default function App() {
+  const { listId } = useParams(); // 👈 dynamic list ID from URL
   const [items, setItems] = useState([]);
   const [input, setInput] = useState("");
 
+  // fallback if no URL provided
+  const currentListId = listId || "default-list";
+
   useEffect(() => {
-    const unsubscribe = onSnapshot(
-      collection(db, "lists", LIST_ID, "items"),
-      (snapshot) => {
-        setItems(
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }))
-        );
-      }
-    );
+    const ref = collection(db, "lists", currentListId, "items");
+
+    const unsubscribe = onSnapshot(ref, (snapshot) => {
+      setItems(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }))
+      );
+    });
 
     return unsubscribe;
-  }, []);
+  }, [currentListId]);
 
   const addItem = async () => {
-    if (!input) return;
+    if (!input.trim()) return;
 
-    await addDoc(collection(db, "lists", LIST_ID, "items"), {
-      name: input,
-      createdAt: Date.now(),
-    });
+    await addDoc(
+      collection(db, "lists", currentListId, "items"),
+      {
+        name: input,
+        createdAt: Date.now(),
+      }
+    );
 
     setInput("");
   };
 
   const removeItem = async (id) => {
-    await deleteDoc(doc(db, "lists", LIST_ID, "items", id));
+    await deleteDoc(doc(db, "lists", currentListId, "items", id));
   };
 
   return (
     <div style={{ padding: 20 }}>
       <h1>Shopping List</h1>
+
+      <p>List ID: <b>{currentListId}</b></p>
 
       <input
         value={input}
@@ -60,7 +67,9 @@ export default function App() {
         {items.map((item) => (
           <li key={item.id}>
             {item.name}
-            <button onClick={() => removeItem(item.id)}>❌</button>
+            <button onClick={() => removeItem(item.id)}>
+              ❌
+            </button>
           </li>
         ))}
       </ul>
