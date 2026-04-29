@@ -16,6 +16,9 @@ export default function App({ listId }) {
 
   // fallback if no URL provided
   const currentListId = listId || "default-list";
+  if (!listId) {
+  return <div>No list selected</div>;
+}
 
   useEffect(() => {
     const ref = collection(db, "lists", currentListId, "items");
@@ -61,7 +64,7 @@ export default function App({ listId }) {
   }
 };
 
-
+console.log(import.meta.env.VITE_FIREBASE_PROJECT_ID);
   return (
     <div style={{ padding: 20 }}>
       
