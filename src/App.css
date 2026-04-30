@@ -45,24 +45,22 @@ h1 {
 
 
 .input-row input {
-  flex: 1;
+  
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 8px;
 }
 
 .input-row button {
+  
   padding: 10px 16px;
   border: none;
-  background: #4f46e5;
+  background: #000000;
   color: white;
   border-radius: 8px;
   cursor: pointer;
 }
 
-.input-row button:hover {
-  background: #4338ca;
-}
 
 /* List */
 ul {
