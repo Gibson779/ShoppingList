@@ -15,7 +15,7 @@ body {
 .app {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  max-width: 400px;
   margin: 40px auto;
   padding: 20px;
   background: white;
@@ -36,10 +36,10 @@ h1 {
 
 /* Input row */
 .input-row {
-  
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+   
 }
 
 
@@ -49,6 +49,7 @@ h1 {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 8px;
+  font-size: 16px;
 }
 
 .input-row button {
