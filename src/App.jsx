@@ -17,6 +17,7 @@ export default function App({ listId }) {
 
   // fallback if no URL provided
   const currentListId = listId || "default-list";
+  
   if (!listId) {
   return <div>No list selected</div>;
 }
@@ -54,27 +55,13 @@ export default function App({ listId }) {
     await deleteDoc(doc(db, "lists", currentListId, "items", id));
   };
 
-  const shareList = async () => {
-  const url = `${window.location.origin}/list/${currentListId}`;
+ 
 
-  try {
-    await navigator.clipboard.writeText(url);
-    alert("Link copied!");
-  } catch {
-    alert("Failed to copy link");
-  }
-};
 
-console.log(import.meta.env.VITE_FIREBASE_PROJECT_ID);
   return (
     <div className="app">
       <h1>Shopping List</h1>
-
-
-      <button className="share-btn"
-      onClick={shareList}>    
-        🔗 Share this list
-      </button>
+      
 
       <p className="list-id">List ID: <b>{currentListId}</b></p>
 

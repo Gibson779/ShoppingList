@@ -15,7 +15,7 @@ body {
 .app {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  max-width: 370px;
   margin: 40px auto;
   padding: 20px;
   background: white;
@@ -36,16 +36,13 @@ h1 {
 
 /* Input row */
 .input-row {
-  display: flex;
   gap: 10px;
   margin-bottom: 20px;
-   
 }
 
 
 
 .input-row input {
-  
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -53,13 +50,13 @@ h1 {
 }
 
 .input-row button {
-  
   padding: 10px 16px;
   border: none;
   background: #000000;
   color: white;
   border-radius: 8px;
   cursor: pointer;
+  margin: 10px;
 }
 
 
@@ -88,7 +85,7 @@ li button {
 /* Share button */
 .share-btn {
   margin-bottom: 15px;
-  background: #10b981;
+  background: #090909;
   color: white;
   border: none;
   padding: 8px 12px;
