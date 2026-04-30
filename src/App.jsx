@@ -84,6 +84,7 @@ console.log(import.meta.env.VITE_FIREBASE_PROJECT_ID);
         onChange={(e) => setInput(e.target.value)}
         placeholder="Add item"
       />
+      
       <button onClick={addItem}>Add</button>
       </div>
       
