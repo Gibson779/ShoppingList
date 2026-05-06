@@ -38,21 +38,6 @@ https://myshoppinglist100.netlify.app/list/mylist
 
 ---
 
-## 📁 Project Structure
-
-```
-src/
-├── components/
-│   ├── ShoppingList.js
-│   ├── ShoppingItem.js
-├── services/
-│   └── firebase.js
-├── App.js
-├── index.js
-```
-
-
-
 ## 📄 License
 
 This project is licensed under the MIT License.
